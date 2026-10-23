@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#7465d8">
+  <meta name="description" content="DearMe membantu mahasiswa mengelola tugas, mengenali suasana hati, dan menyediakan ruang untuk refleksi diri.">
+  <title>DearMe — Ruang Kecil untuk Dirimu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#dashboard" aria-label="DearMe beranda">
+        <span class="brand-mark"><i class="fa-solid fa-seedling"></i></span>
+        <span>Dear<span class="brand-accent">Me</span><small>ruang untuk bertumbuh</small></span>
+      </a>
+
+      <div class="sidebar-label">MENU UTAMA</div>
+      <nav class="nav-links" aria-label="Navigasi utama">
+        <a href="#dashboard" class="nav-item active" data-target="dashboard"><i class="fa-solid fa-grid-2"></i><span>Beranda</span></a>
+        <a href="#tasks" class="nav-item" data-target="tasks"><i class="fa-solid fa-list-check"></i><span>Tugas saya</span><span class="nav-count" id="nav-pending-count">0</span></a>
+        <a href="#mood" class="nav-item" data-target="mood"><i class="fa-regular fa-face-smile"></i><span>Suasana hati</span></a>
+        <a href="#journal" class="nav-item" data-target="journal"><i class="fa-solid fa-book-open"></i><span>Jurnal pribadi</span></a>
+        <a href="#support" class="nav-item" data-target="support"><i class="fa-regular fa-heart"></i><span>Ruang dukungan</span></a>
+      </nav>
+
+      <div class="sidebar-note">
+        <div class="note-flower"><i class="fa-solid fa-spa"></i></div>
+        <p class="note-title">Tidak harus sempurna.</p>
+        <p>Langkah kecil yang kamu ambil hari ini tetap berarti.</p>
+      </div>
+      <div class="sidebar-bottom">
+        <span class="privacy-dot"></span>
+        <span>Data tersimpan di perangkat ini</span>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <button class="icon-button mobile-menu" id="mobile-menu" aria-label="Buka menu"><i class="fa-solid fa-bars"></i></button>
+        <div class="breadcrumb"><span>Ruang pribadimu</span><i class="fa-solid fa-chevron-right"></i><strong id="page-breadcrumb">Beranda</strong></div>
+        <div class="topbar-actions">
+          <span class="today-label" id="today-label"></span>
+          <button class="icon-button" id="export-data" title="Ekspor cadangan data" aria-label="Ekspor cadangan data"><i class="fa-solid fa-cloud-arrow-down"></i></button>
+          <button class="avatar" id="greeting-avatar" title="Sapaan untukmu">D</button>
+        </div>
+      </header>
+
+      <div class="content-wrap">
+        <section id="dashboard" class="page-section active">
+          <div class="welcome-layout">
+            <div class="welcome-copy">
+              <span class="eyebrow"><i class="fa-regular fa-sun"></i> RUANG AMAN UNTUK BERTUMBUH</span>
+              <h1 id="welcome-heading">Halo, kamu. <span class="heading-sparkle">✳</span></h1>
+              <p>Pelan-pelan saja. Kamu tidak harus menyelesaikan semuanya sekaligus. Mari mulai dari hal yang paling berarti hari ini.</p>
+              <button class="btn-primary" data-go="tasks"><i class="fa-solid fa-arrow-right"></i> Lihat rencana hari ini</button>
+            </div>
+            <div class="welcome-art" aria-hidden="true">
+              <div class="art-sun"></div><div class="art-blob"></div>
+              <div class="art-leaf leaf-one"><i class="fa-solid fa-leaf"></i></div>
+              <div class="art-leaf leaf-two"><i class="fa-solid fa-leaf"></i></div>
+              <div class="art-flower"><i class="fa-solid fa-spa"></i></div>
+              <span class="art-star star-one">✦</span><span class="art-star star-two">✳</span>
+            </div>
+          </div>
+
+          <div class="section-heading dashboard-heading">
+            <div><span class="eyebrow">RINGKASAN HARI INI</span><h2>Bagaimana harimu berjalan?</h2></div>
+            <span class="date-pill"><i class="fa-regular fa-calendar"></i><span id="long-date"></span></span>
+          </div>
+
+          <div class="stats-grid">
+            <article class="stat-card stat-lilac">
+              <div class="stat-top"><span class="stat-icon"><i class="fa-solid fa-list-check"></i></span><span class="stat-caption">Fokus akademik</span></div>
+              <p class="stat-number" id="dash-pending-tasks">0</p><p class="stat-title">Tugas belum selesai</p>
+              <div class="stat-bottom"><span id="dash-overdue">Tidak ada tugas terlambat</span><i class="fa-solid fa-arrow-right"></i></div>
+            </article>
+            <article class="stat-card stat-peach">
+              <div class="stat-top"><span class="stat-icon"><i class="fa-regular fa-face-smile"></i></span><span class="stat-caption">Kenali dirimu</span></div>
+              <p class="stat-number stat-word" id="dash-today-mood">Belum dicatat</p><p class="stat-title">Suasana hati hari ini</p>
+              <button class="text-link" data-go="mood">Catat perasaanmu <i class="fa-solid fa-arrow-right"></i></button>
+            </article>
+            <article class="stat-card stat-mint">
+              <div class="stat-top"><span class="stat-icon"><i class="fa-solid fa-book-open"></i></span><span class="stat-caption">Ruang refleksi</span></div>
+              <p class="stat-number" id="dash-journal-count">0</p><p class="stat-title">Catatan jurnal</p>
+              <button class="text-link" data-go="journal">Buka jurnal <i class="fa-solid fa-arrow-right"></i></button>
+            </article>
+          </div>
+
+          <div class="dashboard-lower">
+            <article class="panel upcoming-panel">
+              <div class="panel-heading"><div><span class="eyebrow">LANGKAH BERIKUTNYA</span><h3>Tugas terdekat</h3></div><button class="text-link" data-go="tasks">Semua tugas <i class="fa-solid fa-arrow-right"></i></button></div>
+              <div id="upcoming-tasks" class="upcoming-list"><div class="empty-state compact"><i class="fa-regular fa-circle-check"></i><p>Belum ada tugas. Ruangmu siap diisi.</p><button class="text-link" data-go="tasks">Tambahkan tugas pertama</button></div></div>
+            </article>
+            <article class="panel reflection-panel">
+              <div class="reflection-symbol"><i class="fa-solid fa-sparkles"></i></div>
+              <span class="eyebrow">JEDA SEJENAK</span>
+              <h3>Satu hal kecil yang patut kamu syukuri?</h3>
+              <p>Kamu boleh berhenti sebentar, menarik napas, dan menyadari hal baik yang hadir hari ini.</p>
+              <button class="btn-soft" data-go="journal"><i class="fa-solid fa-pen"></i> Tulis refleksi</button>
+            </article>
+          </div>
+        </section>
+
+        <section id="tasks" class="page-section">
+          <div class="page-intro">
+            <div><span class="eyebrow">ATUR TANPA MEMBEBANI DIRI</span><h1>Tugas saya<span class="heading-period">.</span></h1><p>Susun prioritas, beri ruang untuk jeda, dan kerjakan satu hal dalam satu waktu.</p></div>
+            <button class="btn-primary" id="open-task-modal"><i class="fa-solid fa-plus"></i> Tambah tugas</button>
+          </div>
+          <div class="task-overview" id="task-overview">
+            <div><span class="overview-label">Semua tugas</span><strong id="task-total">0</strong></div>
+            <div><span class="overview-label">Belum selesai</span><strong id="task-pending">0</strong></div>
+            <div><span class="overview-label">Selesai</span><strong id="task-completed">0</strong></div>
+            <div class="progress-overview"><div class="progress-label"><span>Progresmu</span><strong id="task-progress-label">0%</strong></div><div class="progress-track"><span id="task-progress-bar"></span></div></div>
+          </div>
+          <div class="task-toolbar">
+            <label class="search-field"><i class="fa-solid fa-magnifying-glass"></i><input id="search-task" type="search" placeholder="Cari tugas atau mata kuliah..." aria-label="Cari tugas"></label>
+            <select id="filter-task" aria-label="Filter status"><option value="all">Semua status</option><option value="pending">Belum selesai</option><option value="completed">Selesai</option><option value="overdue">Terlambat</option></select>
+            <select id="sort-task" aria-label="Urutkan tugas"><option value="deadline">Deadline terdekat</option><option value="priority">Prioritas tertinggi</option><option value="newest">Tugas terbaru</option></select>
+          </div>
+          <div id="tasks-list" class="tasks-list"></div>
+        </section>
+
+        <section id="mood" class="page-section">
+          <div class="page-intro">
+            <div><span class="eyebrow">DENGARKAN DIRIMU</span><h1>Suasana hati<span class="heading-period">.</span></h1><p>Tidak ada perasaan yang salah. Kamu hanya perlu memberi ruang untuk merasakannya.</p></div>
+          </div>
+          <div class="mood-layout">
+            <article class="panel mood-checkin">
+              <div class="panel-heading"><div><span class="eyebrow">CHECK-IN HARI INI</span><h2>Apa yang kamu rasakan?</h2></div><span class="tiny-icon"><i class="fa-regular fa-heart"></i></span></div>
+              <p class="muted-text">Pilih yang paling mendekati perasaanmu saat ini.</p>
+              <div class="mood-options" id="mood-options">
+                <button class="mood-btn" data-mood="Senang" data-icon="fa-face-grin-stars"><span class="mood-emoji">😊</span><span>Senang</span></button>
+                <button class="mood-btn" data-mood="Tenang" data-icon="fa-face-smile"><span class="mood-emoji">😌</span><span>Tenang</span></button>
+                <button class="mood-btn" data-mood="Biasa saja" data-icon="fa-face-meh"><span class="mood-emoji">😐</span><span>Biasa saja</span></button>
+                <button class="mood-btn" data-mood="Lelah" data-icon="fa-face-tired"><span class="mood-emoji">😮‍💨</span><span>Lelah</span></button>
+                <button class="mood-btn" data-mood="Sedih" data-icon="fa-face-sad-tear"><span class="mood-emoji">😔</span><span>Sedih</span></button>
+                <button class="mood-btn" data-mood="Kewalahan" data-icon="fa-face-dizzy"><span class="mood-emoji">🥺</span><span>Kewalahan</span></button>
+              </div>
+              <label class="field-label" for="mood-note">Ingin bercerita sedikit? <span>Opsional</span></label>
+              <textarea id="mood-note" rows="3" maxlength="600" placeholder="Apa yang membuatmu merasa seperti ini?"></textarea>
+              <div class="form-bottom"><span class="privacy-hint"><i class="fa-solid fa-lock"></i> Catatan ini tersimpan di perangkatmu.</span><button class="btn-primary" id="save-mood-btn"><i class="fa-solid fa-check"></i> Simpan check-in</button></div>
+            </article>
+            <article class="panel mood-insight">
+              <span class="eyebrow">JEJAK PERASAAN</span><h3>Perasaanmu layak didengarkan.</h3><p class="muted-text">Riwayat ini bukan penilaian baik atau buruk. Gunakan untuk mengenali pola dan kebutuhanmu sendiri.</p>
+              <div class="mood-summary" id="mood-summary"><div class="summary-emoji">🌱</div><div><strong>Mulai dari hari ini</strong><span>Catat suasana hatimu untuk melihat riwayatnya di sini.</span></div></div>
+              <div class="mood-mini-stats"><div><span>Check-in 7 hari</span><strong id="mood-week-count">0</strong></div><div><span>Sering dirasakan</span><strong id="mood-most-common">—</strong></div></div>
+            </article>
+          </div>
+          <article class="panel history-panel"><div class="panel-heading"><div><span class="eyebrow">CATATAN DARI WAKTU KE WAKTU</span><h3>Riwayat suasana hati</h3></div><select id="mood-period" aria-label="Periode riwayat mood"><option value="all">Semua riwayat</option><option value="7">7 hari terakhir</option><option value="30">30 hari terakhir</option></select></div><div id="mood-history-list" class="mood-history-list"></div></article>
+        </section>
+
+        <section id="journal" class="page-section">
+          <div class="page-intro">
+            <div><span class="eyebrow">TULIS TANPA TAKUT DIHAKIMI</span><h1>Jurnal pribadi<span class="heading-period">.</span></h1><p>Tempat untuk mengurai pikiran, menyimpan momen, dan bertemu kembali dengan dirimu.</p></div>
+            <button class="btn-primary" id="open-journal-modal"><i class="fa-solid fa-pen-nib"></i> Tulis jurnal</button>
+          </div>
+          <div class="journal-tools">
+            <label class="search-field"><i class="fa-solid fa-magnifying-glass"></i><input type="search" id="search-journal" placeholder="Cari judul atau isi jurnal..." aria-label="Cari jurnal"></label>
+            <select id="filter-journal" aria-label="Filter kategori"><option value="all">Semua kategori</option><option value="Refleksi">Refleksi diri</option><option value="Akademik">Akademik</option><option value="Syukur">Rasa syukur</option><option value="Bebas">Catatan bebas</option></select>
+          </div>
+          <div class="journal-prompt"><span class="prompt-icon"><i class="fa-regular fa-lightbulb"></i></span><div><strong>Butuh inspirasi untuk menulis?</strong><p id="journal-prompt-text">Apa satu hal yang ingin kamu lepaskan hari ini?</p></div><button class="text-link" id="new-prompt">Ganti pertanyaan <i class="fa-solid fa-rotate"></i></button></div>
+          <div id="journal-list" class="journal-grid"></div>
+        </section>
+
+        <section id="support" class="page-section">
+          <div class="page-intro"><div><span class="eyebrow">KAMU TIDAK HARUS SENDIRIAN</span><h1>Ruang dukungan<span class="heading-period">.</span></h1><p>Pengingat kecil dan cara sederhana untuk merawat diri di tengah kesibukan.</p></div></div>
+          <div class="support-hero"><div><span class="eyebrow">PENGINGAT UNTUKMU</span><h2>Produktif bukan berarti harus terus bergerak.</h2><p>Istirahat juga bagian dari proses. Kamu boleh menyesuaikan langkah dengan energi yang kamu punya hari ini.</p></div><div class="support-hero-art"><i class="fa-solid fa-seedling"></i></div></div>
+          <div class="support-grid">
+            <article class="support-card"><span class="support-icon lilac"><i class="fa-solid fa-wind"></i></span><span class="eyebrow">01 · TENANGKAN DIRI</span><h3>Ambil jeda sejenak</h3><p>Tarik napas perlahan, tahan sebentar, lalu embuskan dengan nyaman. Ulangi beberapa kali tanpa memaksa diri.</p></article>
+            <article class="support-card"><span class="support-icon peach"><i class="fa-solid fa-hourglass-half"></i></span><span class="eyebrow">02 · ATUR FOKUS</span><h3>Coba teknik Pomodoro</h3><p>Fokus pada satu tugas selama 25 menit, lalu istirahat 5 menit. Sesuaikan durasinya dengan kebutuhanmu.</p><button class="text-link" id="open-timer">Mulai timer fokus <i class="fa-solid fa-arrow-right"></i></button></article>
+            <article class="support-card"><span class="support-icon mint"><i class="fa-solid fa-seedling"></i></span><span class="eyebrow">03 · REFLEKSI DIRI</span><h3>Rayakan langkah kecil</h3><p>Tanyakan pada diri sendiri: apa hal kecil yang sudah kulakukan hari ini, meskipun belum semuanya selesai?</p><button class="text-link" data-go="journal">Tulis refleksi <i class="fa-solid fa-arrow-right"></i></button></article>
+          </div>
+          <div class="support-disclaimer"><i class="fa-regular fa-heart"></i><p><strong>Ingat, DearMe adalah teman bantu, bukan pengganti bantuan profesional.</strong><br>Jika tekanan terasa berat atau berkepanjangan, pertimbangkan untuk berbicara dengan orang tepercaya, konselor kampus, atau tenaga profesional yang sesuai.</p></div>
+          <article class="panel data-panel"><div class="panel-heading"><div><span class="eyebrow">KENDALI DATA</span><h3>Cadangan dan privasi</h3></div><i class="fa-solid fa-shield-heart data-panel-icon"></i></div><p class="muted-text">Data DearMe disimpan di penyimpanan browser pada perangkat ini. Ekspor cadangan secara berkala agar kamu punya salinan yang bisa dipulihkan.</p><div class="data-actions"><button class="btn-soft" id="export-data-bottom"><i class="fa-solid fa-download"></i> Ekspor cadangan</button><label class="btn-outline file-label"><i class="fa-solid fa-upload"></i> Impor cadangan<input type="file" id="import-data" accept=".json,application/json" hidden></label><button class="btn-danger-soft" id="clear-data"><i class="fa-regular fa-trash-can"></i> Hapus semua data</button></div></article>
+        </section>
+      </div>
+      <footer class="app-footer"><span><i class="fa-solid fa-seedling"></i> DearMe</span><span>Dibuat untuk menemani prosesmu, bukan menuntut kesempurnaan.</span></footer>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="task-modal" role="dialog" aria-modal="true" aria-labelledby="task-modal-title">
+    <div class="modal-card">
+      <div class="modal-heading"><div><span class="eyebrow">RENCANAKAN LANGKAHMU</span><h2 id="task-modal-title">Tambah tugas</h2></div><button class="icon-button close-modal" data-close="task-modal" aria-label="Tutup"><i class="fa-solid fa-xmark"></i></button></div>
+      <form id="task-form">
+        <input type="hidden" id="task-id">
+        <label class="field-label" for="task-title">Nama tugas <span>Wajib</span></label><input class="form-input" id="task-title" required maxlength="120" placeholder="Contoh: Laporan praktikum jaringan">
+        <label class="field-label" for="task-subject">Mata kuliah <span>Wajib</span></label><input class="form-input" id="task-subject" required maxlength="100" placeholder="Contoh: Pemrograman Web">
+        <div class="form-two-col"><div><label class="field-label" for="task-deadline">Tenggat waktu <span>Wajib</span></label><input class="form-input" id="task-deadline" type="datetime-local" required></div><div><label class="field-label" for="task-priority">Prioritas</label><select class="form-input" id="task-priority"><option value="Tinggi">Tinggi</option><option value="Sedang" selected>Sedang</option><option value="Rendah">Rendah</option></select></div></div>
+        <label class="field-label" for="task-note">Catatan tambahan <span>Opsional</span></label><textarea class="form-input" id="task-note" rows="3" maxlength="600" placeholder="Bagian yang perlu diingat..."></textarea>
+        <div class="modal-actions"><button type="button" class="btn-outline" data-close="task-modal">Batal</button><button type="submit" class="btn-primary"><i class="fa-solid fa-check"></i> Simpan tugas</button></div>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="journal-modal" role="dialog" aria-modal="true" aria-labelledby="journal-modal-title">
+    <div class="modal-card">
+      <div class="modal-heading"><div><span class="eyebrow">RUANG MILIKMU</span><h2 id="journal-modal-title">Tulis jurnal</h2></div><button class="icon-button close-modal" data-close="journal-modal" aria-label="Tutup"><i class="fa-solid fa-xmark"></i></button></div>
+      <form id="journal-form">
+        <input type="hidden" id="journal-id">
+        <label class="field-label" for="journal-title">Judul catatan <span>Wajib</span></label><input class="form-input" id="journal-title" required maxlength="120" placeholder="Apa yang ingin kamu ingat?">
+        <label class="field-label" for="journal-category">Kategori</label><select class="form-input" id="journal-category"><option value="Refleksi">Refleksi diri</option><option value="Akademik">Akademik</option><option value="Syukur">Rasa syukur</option><option value="Bebas">Catatan bebas</option></select>
+        <label class="field-label" for="journal-content">Isi pikiranmu <span>Wajib</span></label><textarea class="form-input journal-textarea" id="journal-content" rows="7" required maxlength="10000" placeholder="Kamu boleh menulis dengan jujur. Tidak perlu sempurna..."></textarea>
+        <p class="privacy-hint"><i class="fa-solid fa-lock"></i> Catatan tersimpan di browser perangkat ini, bukan di server DearMe.</p>
+        <div class="modal-actions"><button type="button" class="btn-outline" data-close="journal-modal">Batal</button><button type="submit" class="btn-primary"><i class="fa-solid fa-check"></i> Simpan jurnal</button></div>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="timer-modal" role="dialog" aria-modal="true" aria-labelledby="timer-title">
+    <div class="modal-card timer-card">
+      <div class="modal-heading"><div><span class="eyebrow">FOKUS DENGAN JEDA</span><h2 id="timer-title">Timer fokus</h2></div><button class="icon-button close-modal" data-close="timer-modal" aria-label="Tutup"><i class="fa-solid fa-xmark"></i></button></div>
+      <p class="muted-text">Pilih durasi yang terasa realistis untukmu.</p>
+      <div class="timer-presets"><button class="timer-preset active" data-minutes="25">25 menit</button><button class="timer-preset" data-minutes="15">15 menit</button><button class="timer-preset" data-minutes="5">Jeda 5 menit</button></div>
+      <div class="timer-display" id="timer-display">25:00</div><p class="timer-status" id="timer-status">Kamu bisa mulai kapan saja.</p>
+      <div class="timer-actions"><button class="btn-outline" id="timer-reset">Atur ulang</button><button class="btn-primary" id="timer-start"><i class="fa-solid fa-play"></i> Mulai</button></div>
+    </div>
+  </div>
+
+  <div class="toast-region" id="toast-region" aria-live="polite" aria-atomic="true"></div>
+  <script src="script.js"></script>
+</body>
+</html>
