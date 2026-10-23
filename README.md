@@ -44,17 +44,10 @@ How to Use
 Data and Privacy
 DearMe stores tasks, mood records, and journal entries in the browser's local storage on the device where the app is used. The current implementation does not include user accounts or cloud synchronization. Data may be lost if browser site data is cleared, so users should export backups when needed. Imported backup files should only come from a trusted source.
 
-Project Structure
-DearMe/
-├── index.html   # Application structure and content
-├── style.css    # Layout, styling, and responsive rules
-├── script.js    # Application interactions and local data handling
-└── README.md    # Project documentation
-
 Sustainable Development Goals (SDGs)
 DearMe may be relevant to the following United Nations Sustainable Development Goals:
-- SDG 3 — Good Health and Well-Being: the mood check-in and personal journal provide space for students to reflect on how they feel. DearMe is a self-reflection and organization tool, not a medical or mental-health treatment service.
-- SDG 4 — Quality Education: task and deadline management is designed to help students organize their academic responsibilities and study routines.
+SDG 3 — Good Health and Well-Being: the mood check-in and personal journal provide space for students to reflect on how they feel. DearMe is a self-reflection and organization tool, not a medical or mental-health treatment service.
+SDG 4 — Quality Education: task and deadline management is designed to help students organize their academic responsibilities and study routines.
 
 Team
 DearMe is developed by a three-member student team for FunDev International Competition 2026.
